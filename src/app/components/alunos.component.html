@@ -1,0 +1,58 @@
+<div class="container margem">
+    <h1>Cadastro de Alunos</h1>
+    <hr/>
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label>Informe o nome do aluno:</label>
+                <input type="text" #busca (keyup)="0" class="form-control" />
+            </div>
+
+            <ul class="list_group">
+                <li *ngFor="let item of listaAlunos | sublista:busca.value" class="list-group-item" 
+                    (click)="selecionar(item)">                    
+                    <a [class.selecionado]="item === alunoSelecionado" 
+                        [routerLink]="['/alunos']">{{item.id}} - {{item.Nome | uppercase }}</a>
+                </li>
+            </ul>
+
+            <button type="button" (click)="novo()" class="btn btn-info">
+                <span class="glyphicon glyphicon-plus"></span>
+                Novo Aluno
+            </button>
+
+        </div>
+
+        <!-- Vamos mostrar o formulário somente se tiver algum aluno selecionado -->
+
+        <div *ngIf="alunoSelecionado">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="matricula">Matrícula:</label>
+                    <input type="number" [(ngModel)]="alunoSelecionado.Matricula" class="form-control" 
+                id="matricula" name="matricula">
+                </div>
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" [(ngModel)]="alunoSelecionado.Nome" class="form-control" id="nome" 
+                name="nome">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" [(ngModel)]="alunoSelecionado.Email" class="form-control" id="email" 
+                name="email">
+                </div>
+    
+                <div class="form-group">
+                    <button type="button" (click)="incluir(alunoSelecionado)" class="btn btn-info">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        Incluir Aluno
+                    </button>
+                </div>
+            </div>
+        </div>
+
+ 
+    </div>
+</div>

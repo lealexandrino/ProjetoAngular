@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="alert alert-success text-center">
+    Conteúdo do componente AppComponent
+  </div>
+  <hr />
+
+  <div class="row">
+
+    <div class="col-sm-6">
+      <h3>Exemplo 01 - Binding Unidirecional</h3>
+      <span>Numero Aleatório:</span>
+      <input type="text" [value]="rnd">
+      <hr />
+
+      <h3>Exemplo 03 - Binding Unidirecional + filtro</h3>
+      <input type="text" (keyup)="filtrar($event)" />
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>Nome</td>
+            <td>Idade</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let f of funcionarios">
+            <td>{{f.nome}}</td>
+            <td>{{f.idade}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-sm-6">
+      <h3>Exemplo 02 - Diretivas ngFor e ngIf</h3>
+      <select #lista (change)="mostrar(lista.value)">
+        <option value="">SELECIONE</option>
+        <option *ngFor="let f of funcionarios">{{f.nome}}</option>
+      </select>
+      <div *ngIf="nomeFuncionario; else blocoElse">Nome Selecionado: {{nomeFuncionario}}</div>
+      <ng-template #blocoElse>
+        <div>Nenhum nome selecionado</div>
+      </ng-template>
+      <hr />
+
+      <h3>Exemplo 04 - Binding Bidirecional</h3>
+      <span>Informe o salário: </span>
+      <input type="text" [(ngModel)]="func.valor" />
+      <br />
+      <span>Valor do imposto: {{func.calcular()}}</span>
+      <hr />
+
+      <span>Informe o salário: </span>
+      <input type="text" [(ngModel)]="func.valor" />
+      <br />
+      <button (click)="efetuarCalculo()">Calcular Imposto</button><br />
+      <span>Valor do imposto: {{imposto}}</span>
+    </div>
+  </div>
+</div>
